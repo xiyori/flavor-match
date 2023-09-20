@@ -6,27 +6,32 @@ import TinderCard from 'react-tinder-card'
 const db = [
   {
     name: 'Breaded Pan-Fried Salmon',
-    url: '/img/salmon.jpg'
+    url: ['/img/salmon.jpg'],
+    description: "These breaded pan-fried salmon fillets are best served with steamed rice and spring mix salad, or broccoli florets and mashed potatoes, or on a"
   },
   {
     name: 'Fried Chicken Rice',
-    url: '/img/chicken.jpg'
+    url: ['/img/chicken.jpg'],
+    description: "Chicken Fried Rice that's made with brown rice and lean chicken breast instead of white rice and ham. Hearty and so satisfying."
   },
   {
     name: 'Grilled Steak',
-    url: '/img/steak.jpg'
+    url: ['/img/steak.jpg'],
+    description: "Perfect Grilled Steak with Herb Butter features a homemade steak seasoning and buttery herb finish. This easy sizzling grilled steak recipe is "
   },
   {
     name: 'Baked Dorado with Vegetables',
-    url: '/img/dorado.jpg'
+    url: ['/img/dorado.jpg'],
+    description: "If you're looking for a side dish for this baked fish dish, a boiled potato salad would be lovely. You can dress your potato salad with extra virgin olive "
   },
   {
     name: 'Pizza Margherita',
-    url: '/img/margherita.avif'
+    url: ['/img/margherita.avif'],
+    description: "Pizza Margherita is a typical Neapolitan pizza, made with San Marzano tomatoes, mozzarella cheese, fresh basil, salt, and extra-virgin olive oil."
   }
 ]
 
-function Advanced () {
+function Deck () {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
   // used for outOfFrame closure
@@ -98,10 +103,26 @@ function Advanced () {
             onCardLeftScreen={() => outOfFrame(character.name, index)}
           >
             <div
-              style={{ backgroundImage: 'url(' + character.url + ')' }}
+              style={{ backgroundImage: 'url(' + character.url[0] + ')' }}
               className='card'
             >
-              <h3>{character.name}</h3>
+              <div className='cardGradient'>
+                {character.url.length > 1 && <div className='grid'>{
+                  Array.from(Array(character.url.length).keys()).map((i) => 
+                    <div className={'stripe' + (i == 0 ? ' active' : '')}/>
+                  )
+                }</div>}
+                <div className='bottomContent'>
+                  <div className='flexContainer'>
+                    <h3>{character.name}</h3>
+                    <div 
+                      style={{ backgroundImage: 'url("/info.svg")' }}
+                      className='infoSymbol'
+                    />
+                  </div>
+                  <p>{character.description}</p>
+                </div>
+              </div>
             </div>
           </TinderCard>
         ))}
@@ -124,4 +145,4 @@ function Advanced () {
   )
 }
 
-export default Advanced
+export default Deck

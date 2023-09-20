@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import Advanced from './advanced'
+import Deck from './deck'
 
 export default function Home() {
   return (
     <div className='app'>
-      <Advanced />
+      <Deck />
     </div>
   )
 }

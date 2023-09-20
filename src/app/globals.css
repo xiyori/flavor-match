@@ -7,12 +7,12 @@
   --background-color: #ffbb74;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-color: #fff;
     --background-color: #25211e;
   }
-}
+} */
 
 body {
   color: var(--foreground-color);
@@ -54,14 +54,8 @@ body {
   flex-direction: row !important;
 }
 
-.row>* {
+.row > * {
   margin: 5px;
-}
-
-h1 {
-  font-family: 'Damion', cursive;
-  /* color: #fff; */
-  text-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
 }
 
 .swipe {
@@ -71,36 +65,89 @@ h1 {
 .cardContainer {
   width: 90vw;
   max-width: 260px;
-  height: 300px;
+  height: 340px;
 }
 
 .card {
   position: relative;
+  overflow: hidden;
   background-color: #fff;
   width: 80vw;
   max-width: 260px;
   height: 340px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
-  border-radius: 20px;
+  border-radius: 12px 12px 20px 20px;
   background-size: cover;
   background-position: center;
+  float: left;
 }
 
-.cardContent {
+.cardGradient {
   width: 100%;
   height: 100%;
+  background: linear-gradient(to bottom, #0000, #0000 75%, rgba(0, 0, 0, 0.75) 100%);
 }
 
 .swipe:last-of-type {
 
 }
 
-.card h3 {
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 5px;
+}
+
+.card .grid {
+  margin: 5px 10px 5px 10px;
+}
+
+.grid .stripe {
+  background-color: rgba(0, 0, 0, 0.25);
+  height: 2px;
+  border-radius: 1px;
+}
+
+.grid .stripe.active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card .bottomContent {
   position: absolute;
   bottom: 0;
-  margin: 10px;
-  color: #000;
-  text-shadow: 0px 0px 4px #fff;
+  margin: 0 10px 20px 20px;
+  color: #fff;
+  text-shadow: 0px 0px 4px #000;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card h3 {
+  font-size: 16px;
+  max-width: 216px;
+  margin: 0;
+}
+
+.card .infoSymbol {
+  width: 14px;
+  height: 14px;
+  background-size: cover;
+  margin-top: auto;
+  margin-bottom: 3px;
+}
+
+.card p {
+  max-width: 230px;
+  margin: 6px 0 0 0;
+  width: 100%;
+  height: 14px;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .infoText {
