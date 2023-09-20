@@ -3,27 +3,20 @@
 @tailwind utilities;*/
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-color: #000;
+  --background-color: #ffbb74;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-color: #fff;
+    --background-color: #25211e;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--foreground-color);
+  background: var(--background-color);
 }
 
 #root {
@@ -67,12 +60,8 @@ body {
 
 h1 {
   font-family: 'Damion', cursive;
-  color: #fff;
-  text-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
-}
-
-h2 {
-  color: #fff;
+  /* color: #fff; */
+  text-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
 }
 
 .swipe {
@@ -90,8 +79,8 @@ h2 {
   background-color: #fff;
   width: 80vw;
   max-width: 260px;
-  height: 300px;
-  box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+  height: 340px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
   border-radius: 20px;
   background-size: cover;
   background-position: center;
@@ -110,14 +99,15 @@ h2 {
   position: absolute;
   bottom: 0;
   margin: 10px;
-  color: #fff;
+  color: #000;
+  text-shadow: 0px 0px 4px #fff;
 }
 
 .infoText {
   width: 100%;
   justify-content: center;
   display: flex;
-  color: #fff;
+  /* color: #fff; */
   animation-name: popup;
   animation-duration: 800ms;
 }
@@ -139,7 +129,7 @@ h2 {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  color: #fff;
+  /* color: #fff; */
   font-size: 18px;
   background-color: #9198e5;
   transition: 200ms;
