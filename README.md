@@ -1,4 +1,4 @@
-## Meal Tinder app
+## FlavorMatch front-end
 
 How to use:
 
