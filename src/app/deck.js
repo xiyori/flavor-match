@@ -1,7 +1,12 @@
 'use client';
 
 import React, { useState, useMemo, useRef } from 'react'
-import TinderCard from 'react-tinder-card'
+// import TinderCard from 'react-tinder-card'
+
+import dynamic from "next/dynamic"
+const TinderCard = dynamic(() => import('react-tinder-card'), {
+  ssr: false
+});
 
 const db = [
   {
@@ -109,7 +114,7 @@ function Deck () {
               <div className='cardGradient'>
                 {character.url.length > 1 && <div className='grid'>{
                   Array.from(Array(character.url.length).keys()).map((i) => 
-                    <div className={'stripe' + (i == 0 ? ' active' : '')}/>
+                    <div key={i} className={'stripe' + (i == 0 ? ' active' : '')}/>
                   )
                 }</div>}
                 <div className='bottomContent'>
