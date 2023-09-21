@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// import CustomFont from 'next/font/local'
+// const myFont = CustomFont({ src: '../public/fonts/BAHNSCHRIFT.TTF' })
+
 export const metadata = {
   title: 'FlavorMatch',
   description: 'Save time, swipe!',

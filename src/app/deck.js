@@ -90,7 +90,7 @@ function Deck () {
   }
 
   return (
-    <div>
+    <div className='deck'>
       <link
         href='https://fonts.googleapis.com/css?family=Damion&display=swap'
         rel='stylesheet'
@@ -99,32 +99,39 @@ function Deck () {
         href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
         rel='stylesheet'
       />
-      {db.length > 0 &&
-      <div className='cardContainer'>
-        {db.map((item, index) => (
-          <TinderCard
-            ref={childRefs[index]}
-            className='swipe'
-            key={item.name}
-            onSwipe={(dir) => swiped(dir, item.name, index)}
-            onCardLeftScreen={() => outOfFrame(item.name, index)}
-          >
-            <div
-              style={{ backgroundImage: 'url(' + item.url[0] + ')' }}
-              className='card'
+      {db.length > 0 && (
+        <div className='cardContainer'>
+          {db.map((item, index) => (
+            <TinderCard
+              ref={childRefs[index]}
+              preventSwipe={["up", "down"]}
+              className='swipe'
+              key={item.name}
+              onSwipe={(dir) => swiped(dir, item.name, index)}
+              onCardLeftScreen={() => outOfFrame(item.name, index)}
             >
-              <div className='cardGradient'>
-                {item.url.length > 1 && <div className='grid'>{
-                  Array.from(Array(item.url.length).keys()).map((i) =>
-                    <div key={i} className={'stripe' + (i == 0 ? ' active' : '')}/>
-                  )
-                }</div>}
-                <ExpandableDescription name={item.name} description={item.description} />
+              <div
+                style={{ backgroundImage: 'url(' + item.url[0] + ')' }}
+                className='card'
+              >
+                <div className='cardGradient'>
+                  {item.url.length > 1 && <div className='grid'>{
+                    Array.from(Array(item.url.length).keys()).map((i) =>
+                      <div key={i} className={'stripe' + (i == 0 ? ' active' : '')}/>
+                    )
+                  }</div>}
+                  <ExpandableDescription name={item.name} description={item.description} />
+                </div>
               </div>
+            </TinderCard>
+          ))}
+          {currentIndex < 0 && (
+            <div className='endMessage'>
+              Waiting for everyone to finish swiping...
             </div>
-          </TinderCard>
-        ))}
-      </div>}
+          )}
+        </div>
+      )}
       <div className='buttons flexContainer'>
         <button
           className='big'

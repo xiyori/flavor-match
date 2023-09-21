@@ -7,23 +7,34 @@
   --background-color: #f5f5dc;
   --button-color: #ffbb74;
   --button-small-color: #ffcf9d;
+  --button-inactive-color: #ffdbb5;
   --button-disabled-color: #c3c4d3;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --foreground-color: #fff;
     --background-color: #25211e;
-    --button-color: #534435;
-    --button-small-color: #5c442c;
+    --button-color: #5b4b3a;
+    --button-small-color: #62482f;
+    --button-inactive-color: #4c433b;
     --button-disabled-color: #464649;
   }
-} */
+
+  .roomSwitch button img, .buttons button.small img {
+    filter: invert();
+  }
+
+  .buttons button.big img {
+    filter: brightness(2);
+  }
+}
 
 body {
+  margin: 0;
   color: var(--foreground-color);
   background: var(--background-color);
-  font-family: 'Bahnscrift';
+  /* font-family: 'Bahnscrift'; */
 }
 
 #root {
@@ -39,7 +50,7 @@ body {
   user-select: none;
 }
 
-#root>div {
+.deck {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,11 +61,57 @@ body {
   overflow: hidden;
 }
 
-.app>div {
+.topMenu {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  height: 50px;
+  background: #004225;
+}
+
+.topMenu .logo {
+  display: flex;
+  margin-left: 5px;
+}
+
+.topMenu .logo > img {
+  margin: 5px;
+}
+
+.topMenu .logo > div {
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #ffb000;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.topMenu .info {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #ffb000;
+  font-size: 12px;
+}
+
+.topMenu .info > a {
+  margin-left: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.topMenu .info > a:hover {
+  text-decoration: underline;
+}
+
+.topMenu .signIn {
+  margin: auto 20px auto auto;
+  width: 60px;
+  height: 18px;
+  border: none;
+  border-radius: 6px;
+  background: #ffbb74;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .row {
@@ -119,18 +176,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.card .expandableDescription {
-  margin: 0 0 20px 0;
-  padding: 10px 10px 10px 20px;
-  color: #fff;
-  text-shadow: 0px 0px 4px #000;
-  transition: all 0.2s ease-out;
-}
-
-.card .expandableDescription.contracted {
-  padding-bottom: 0;
-}
-
 .flexContainer {
   display: flex;
   justify-content: space-between;
@@ -148,6 +193,22 @@ body {
   background-size: cover;
   margin-top: auto;
   margin-bottom: 3px;
+}
+
+.card .expandableDescription {
+  margin: 0 0 20px 0;
+  padding: 10px 10px 10px 20px;
+  color: #fff;
+  text-shadow: 0px 0px 4px #000;
+  transition: all 0.125s ease-out;
+}
+
+.card .expandableDescription.contracted {
+  margin-bottom: 10px;
+}
+
+.card .expandableDescription.contracted:hover {
+  margin-bottom: 13px;
 }
 
 .card .expandableDescription p {
@@ -169,15 +230,18 @@ body {
 
 .expandableDescription.contracted {
   background: none;
-  top: auto;
 }
 
-.expandableDescription p {
-  transition: all 2s ease-out;
+.expandableDescription.contracted:hover {
+  background: rgba(40, 40, 40, 0.75);
 }
+
+/* .expandableDescription p {
+  height: auto;
+  transition: height 0.2s ease-out;
+} */
 
 .expandableDescription.contracted p {
-  height: 14px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -229,6 +293,62 @@ body {
 
 .buttons button:hover {
   transform: scale(1.1);
+}
+
+.roomSwitch {
+  position: relative;
+  width: 75px;
+  height: 20px;
+  margin: 40px auto 10px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.roomSwitch button {
+  border-radius: 10px;
+  position: absolute;
+  width: 50px;
+  height: 100%;
+  border: none;
+  transition: 200ms;
+  background-color: var(--button-inactive-color);
+  z-index: -1;
+}
+
+.roomSwitch button.left {
+  left: 0;
+}
+
+.roomSwitch button.right {
+  left: 25px;
+}
+
+.roomSwitch button.active {
+  background-color: var(--button-color);
+  z-index: 0;
+}
+
+.roomSwitch button.left img {
+  margin-right: 20px;
+}
+
+.roomSwitch button.left.active img {
+  margin-right: 0;
+}
+
+.roomSwitch button.right img {
+  margin-left: 20px;
+}
+
+.roomSwitch button.right.active img {
+  margin-left: 0;
+}
+
+.endMessage {
+  text-align: center;
+  margin-top: 140px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 @keyframes popup {

@@ -17,7 +17,7 @@ function ExpandableDescription ({name, description}) {
     >
       <div className='flexContainer'>
         <h3>{name}</h3>
-        <div 
+        <div
           style={{ backgroundImage: 'url("/info.svg")' }}
           className='infoSymbol'
         />
