@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
+import ExpandableDescription from './expandable_description';
 
 // import dynamic from "next/dynamic"
 // const TinderCard = dynamic(() => import('react-tinder-card'), {
@@ -12,7 +13,7 @@ const db = [
   {
     name: 'Breaded Pan-Fried Salmon',
     url: ['/img/salmon.jpg'],
-    description: "These breaded pan-fried salmon fillets are best served with steamed rice and spring mix salad, or broccoli florets and mashed potatoes, or on a"
+    description: "These breaded pan-fried salmon fillets are best served with steamed rice and spring mix salad, or broccoli florets and mashed potatoes, or on a Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel venenatis mi. Aenean tempor, tortor et dapibus lacinia, turpis nisi eleifend sapien, non maximus eros eros id ligula. Duis sodales mattis nisl eu posuere. Sed consectetur eros et diam mattis, ac interdum dui pharetra. Aliquam erat volutpat. Morbi in bibendum sapien. Nulla vel elit gravida, pulvinar erat a, efficitur metus. Nunc sed risus metus. Mauris ac posuere urna. Etiam laoreet lectus vitae bibendum ultricies. Ut gravida non massa nec consectetur. Quisque luctus, arcu eu congue rutrum, velit nulla euismod orci, ut hendrerit leo tortor id elit. Aenean sit amet nulla non nisl condimentum ornare. Etiam laoreet dui non nibh posuere porttitor. Quisque sit amet sapien pellentesque, laoreet sapien sit amet, ultricies nunc."
   },
   {
     name: 'Fried Chicken Rice',
@@ -98,44 +99,64 @@ function Deck () {
         href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
         rel='stylesheet'
       />
+      {db.length > 0 &&
       <div className='cardContainer'>
-        {db.map((character, index) => (
+        {db.map((item, index) => (
           <TinderCard
             ref={childRefs[index]}
             className='swipe'
-            key={character.name}
-            onSwipe={(dir) => swiped(dir, character.name, index)}
-            onCardLeftScreen={() => outOfFrame(character.name, index)}
+            key={item.name}
+            onSwipe={(dir) => swiped(dir, item.name, index)}
+            onCardLeftScreen={() => outOfFrame(item.name, index)}
           >
             <div
-              style={{ backgroundImage: 'url(' + character.url[0] + ')' }}
+              style={{ backgroundImage: 'url(' + item.url[0] + ')' }}
               className='card'
             >
               <div className='cardGradient'>
-                {character.url.length > 1 && <div className='grid'>{
-                  Array.from(Array(character.url.length).keys()).map((i) => 
+                {item.url.length > 1 && <div className='grid'>{
+                  Array.from(Array(item.url.length).keys()).map((i) =>
                     <div key={i} className={'stripe' + (i == 0 ? ' active' : '')}/>
                   )
                 }</div>}
-                <div className='bottomContent'>
-                  <div className='flexContainer'>
-                    <h3>{character.name}</h3>
-                    <div 
-                      style={{ backgroundImage: 'url("/info.svg")' }}
-                      className='infoSymbol'
-                    />
-                  </div>
-                  <p>{character.description}</p>
-                </div>
+                <ExpandableDescription name={item.name} description={item.description} />
               </div>
             </div>
           </TinderCard>
         ))}
-      </div>
-      <div className='buttons'>
-        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>Swipe left!</button>
-        <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>Undo swipe!</button>
-        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Swipe right!</button>
+      </div>}
+      <div className='buttons flexContainer'>
+        <button
+          className='big'
+          style={{ backgroundColor: !canSwipe && 'var(--button-disabled-color)' }}
+          onClick={() => swipe('left')}
+        >
+          <img src="/close.svg" style={{
+            margin: "8px",
+            marginTop: "12px",
+            width: "calc(100% - 16px)"
+          }} />
+        </button>
+        <button
+          className='small'
+          style={{ backgroundColor: !canGoBack && 'var(--button-disabled-color)' }}
+          onClick={() => goBack()}>
+          <img src="/undo.svg" style={{
+            margin: "10px",
+            width: "calc(100% - 20px)"
+          }} />
+        </button>
+        <button
+          className='big'
+          style={{ backgroundColor: !canSwipe && 'var(--button-disabled-color)' }}
+          onClick={() => swipe('right')}
+        >
+          <img src="/heart.svg" style={{
+            margin: "6px",
+            marginTop: "12px",
+            width: "calc(100% - 12px)"
+          }}/>
+        </button>
       </div>
       {lastDirection ? (
         <h2 key={lastDirection} className='infoText'>
