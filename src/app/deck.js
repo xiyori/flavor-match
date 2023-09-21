@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useMemo, useRef } from 'react'
-// import TinderCard from 'react-tinder-card'
+import TinderCard from 'react-tinder-card'
 
-import dynamic from "next/dynamic"
-const TinderCard = dynamic(() => import('react-tinder-card'), {
-  ssr: false
-});
+// import dynamic from "next/dynamic"
+// const TinderCard = dynamic(() => import('react-tinder-card'), {
+//   ssr: false
+// });
 
 const db = [
   {
