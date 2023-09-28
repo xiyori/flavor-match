@@ -165,7 +165,7 @@ function Deck () {
           }}/>
         </button>
       </div>
-      {lastDirection ? (
+      {/* {lastDirection ? (
         <h2 key={lastDirection} className='infoText'>
           You swiped {lastDirection}
         </h2>
@@ -173,7 +173,7 @@ function Deck () {
         <h2 className='infoText'>
           Swipe a card or press a button to get Restore Card button visible!
         </h2>
-      )}
+      )} */}
     </div>
   )
 }
