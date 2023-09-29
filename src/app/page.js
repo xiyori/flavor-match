@@ -1,15 +1,15 @@
 'use client';
 
-import Deck from './deck'
 import RoomCreator from './room_creator';
 import { BrowserRouter as Router, Routes, Route, NavLink }
     from 'react-router-dom';
+import DeckManager from './deck_manager';
 
 export default function App() {
   return (
     <Router className='app'>
       <div className='topMenu'>
-        <NavLink to="/" className='logo'>
+        <NavLink to="/init" className='logo'>
           <img src="/logo.svg"/>
           <div>FlavorMatch</div>
         </NavLink>
@@ -26,27 +26,11 @@ export default function App() {
         </NavLink>
       </div>
       <Routes>
-          <Route exact path='/' element={
+          <Route exact path='/init' element={
             <RoomCreator />
           } />
-          <Route path='/swipe' element={
-            <div>
-              <div className='roomSwitch'>
-                <button className='left active'>
-                  <img src="/person.svg" style={{
-                    marginTop: "4px",
-                    height: "calc(100% - 8px)"
-                  }}/>
-                </button>
-                <button className='right'>
-                  <img src="/groups.svg" style={{
-                    marginTop: "3px",
-                    height: "calc(100% - 10px)"
-                  }}/>
-                </button>
-              </div>
-              <Deck />
-            </div>
+          <Route path='/' element={
+            <DeckManager nUsers={3} />
           } />
           <Route path='/sign-in' element={
             <div style={{fontSize: "40px", textAlign: "center", marginTop: "100px"}}>Nothing here yet :(</div>

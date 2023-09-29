@@ -118,8 +118,8 @@ body {
   height: 18px;
   border-radius: 6px;
   line-height: 18px;
-  color: var(--foreground-color);
-  background: var(--button-color);
+  color: black;
+  background: #ffbb74;
   transition: all 100ms;
   text-decoration: none;
   text-align: center;
@@ -318,7 +318,7 @@ body {
   position: relative;
   width: 75px;
   height: 20px;
-  margin: 40px auto 10px auto;
+  margin: calc((100vh - 520px) / 2) auto 10px auto;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -414,7 +414,7 @@ body {
   padding: 8px 0;
   position: absolute;
   z-index: 1;
-  top: 200px;
+  top: 100px;
   left: calc(50% - 334px / 2);
 }
 
@@ -441,7 +441,7 @@ body {
     animation: fadeIn 1s;
   }
 
-  button {
+  > button {
     background-color: var(--button-color) !important;
     cursor: default !important;
   }
@@ -485,6 +485,35 @@ body {
     text-align: center;
   }
 
+  .inviteLink {
+    position: relative;
+  }
+
+  .inviteLink input {
+    font-size: 11px;
+    text-align: left;
+  }
+
+  .inviteLink button {
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 39px;
+    height: 36px;
+    border: none;
+    border-radius: 0 17px 17px 0;
+    background: var(--button-color);
+  }
+
+  .inviteLink button:hover {
+    background: var(--button-hover-color);
+  }
+
+  .inviteLink button img {
+    filter: invert();
+  }
+
   .joinButton {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -493,7 +522,7 @@ body {
     border-radius: 30px;
     transition: transform 200ms;
     background: var(--top-menu-color);
-    color: var(--foreground-color);
+    color: white;
     text-decoration: none;
     text-align: center;
     font-weight: bold;
@@ -503,6 +532,11 @@ body {
   .joinButton:hover {
     transform: scale(1.1);
   }
+}
+
+.flexContainer.deckManager {
+  justify-content: space-around;
+
 }
 
 @-webkit-keyframes fadeIn {

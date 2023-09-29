@@ -9,35 +9,35 @@ import ExpandableDescription from './expandable_description';
 //   ssr: false
 // });
 
-const db = [
-  {
-    name: 'Breaded Pan-Fried Salmon',
-    url: ['/img/salmon.jpg'],
-    description: "These breaded pan-fried salmon fillets are best served with steamed rice and spring mix salad, or broccoli florets and mashed potatoes, or on a Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel venenatis mi. Aenean tempor, tortor et dapibus lacinia, turpis nisi eleifend sapien, non maximus eros eros id ligula. Duis sodales mattis nisl eu posuere. Sed consectetur eros et diam mattis, ac interdum dui pharetra. Aliquam erat volutpat. Morbi in bibendum sapien. Nulla vel elit gravida, pulvinar erat a, efficitur metus. Nunc sed risus metus. Mauris ac posuere urna. Etiam laoreet lectus vitae bibendum ultricies. Ut gravida non massa nec consectetur. Quisque luctus, arcu eu congue rutrum, velit nulla euismod orci, ut hendrerit leo tortor id elit. Aenean sit amet nulla non nisl condimentum ornare. Etiam laoreet dui non nibh posuere porttitor. Quisque sit amet sapien pellentesque, laoreet sapien sit amet, ultricies nunc."
-  },
-  {
-    name: 'Fried Chicken Rice',
-    url: ['/img/chicken.jpg'],
-    description: "Chicken Fried Rice that's made with brown rice and lean chicken breast instead of white rice and ham. Hearty and so satisfying."
-  },
-  {
-    name: 'Grilled Steak',
-    url: ['/img/steak.jpg'],
-    description: "Perfect Grilled Steak with Herb Butter features a homemade steak seasoning and buttery herb finish. This easy sizzling grilled steak recipe is "
-  },
-  {
-    name: 'Baked Dorado with Vegetables',
-    url: ['/img/dorado.jpg'],
-    description: "If you're looking for a side dish for this baked fish dish, a boiled potato salad would be lovely. You can dress your potato salad with extra virgin olive "
-  },
-  {
-    name: 'Pizza Margherita',
-    url: ['/img/margherita.avif'],
-    description: "Pizza Margherita is a typical Neapolitan pizza, made with San Marzano tomatoes, mozzarella cheese, fresh basil, salt, and extra-virgin olive oil."
-  }
-]
+// const db = [
+//   {
+//     name: 'Breaded Pan-Fried Salmon',
+//     url: ['/img/salmon.jpg'],
+//     description: "These breaded pan-fried salmon fillets are best served with steamed rice and spring mix salad, or broccoli florets and mashed potatoes, or on a Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel venenatis mi. Aenean tempor, tortor et dapibus lacinia, turpis nisi eleifend sapien, non maximus eros eros id ligula. Duis sodales mattis nisl eu posuere. Sed consectetur eros et diam mattis, ac interdum dui pharetra. Aliquam erat volutpat. Morbi in bibendum sapien. Nulla vel elit gravida, pulvinar erat a, efficitur metus. Nunc sed risus metus. Mauris ac posuere urna. Etiam laoreet lectus vitae bibendum ultricies. Ut gravida non massa nec consectetur. Quisque luctus, arcu eu congue rutrum, velit nulla euismod orci, ut hendrerit leo tortor id elit. Aenean sit amet nulla non nisl condimentum ornare. Etiam laoreet dui non nibh posuere porttitor. Quisque sit amet sapien pellentesque, laoreet sapien sit amet, ultricies nunc."
+//   },
+//   {
+//     name: 'Fried Chicken Rice',
+//     url: ['/img/chicken.jpg'],
+//     description: "Chicken Fried Rice that's made with brown rice and lean chicken breast instead of white rice and ham. Hearty and so satisfying."
+//   },
+//   {
+//     name: 'Grilled Steak',
+//     url: ['/img/steak.jpg'],
+//     description: "Perfect Grilled Steak with Herb Butter features a homemade steak seasoning and buttery herb finish. This easy sizzling grilled steak recipe is "
+//   },
+//   {
+//     name: 'Baked Dorado with Vegetables',
+//     url: ['/img/dorado.jpg'],
+//     description: "If you're looking for a side dish for this baked fish dish, a boiled potato salad would be lovely. You can dress your potato salad with extra virgin olive "
+//   },
+//   {
+//     name: 'Pizza Margherita',
+//     url: ['/img/margherita.avif'],
+//     description: "Pizza Margherita is a typical Neapolitan pizza, made with San Marzano tomatoes, mozzarella cheese, fresh basil, salt, and extra-virgin olive oil."
+//   }
+// ]
 
-function Deck () {
+function Deck ({ id, db, votes, swipeHistory, setEndState }) {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
   // used for outOfFrame closure
@@ -99,6 +99,20 @@ function Deck () {
         href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
         rel='stylesheet'
       />
+      <div className='roomSwitch'>
+        <button className='left'>
+          <img src="/person.svg" style={{
+            marginTop: "4px",
+            height: "calc(100% - 8px)"
+          }}/>
+        </button>
+        <button className='right active'>
+          <img src="/groups.svg" style={{
+            marginTop: "3px",
+            height: "calc(100% - 10px)"
+          }}/>
+        </button>
+      </div>
       {db.length > 0 && (
         <div className='cardContainer'>
           {db.map((item, index) => (

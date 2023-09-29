@@ -56,7 +56,7 @@ function RoomCreator () {
           <p>Your name</p>
             <input value={username} onInput={e => setUsername(e.target.value)}/>
           </div>
-          <NavLink to='/swipe' className='joinButton' onClick={joinRoom}>
+          <NavLink to='/' className='joinButton' onClick={joinRoom}>
             Join
           </NavLink>
         </span>
@@ -64,10 +64,22 @@ function RoomCreator () {
         <span className="popup">
           <img src="/logo_white.svg"/>
           <div className='title'>
-            Scan QR to join!
+            Room created!
           </div>
-          <img src="/qr.svg" className='qr'/>
-          <NavLink to='/swipe' className='joinButton' onClick={joinRoom}>
+          Share QR or invite link with your friends
+          <img src="/qr.jpg" className='qr'/>
+          <div className='inviteLink'>
+            <input value="https://flavormatch.tilda.ws/swipe/69420"/>
+            <button
+              onClick={() => {navigator.clipboard.writeText("https://flavormatch.tilda.ws/swipe/69420")}}
+            >
+              <img src="/copy.png" style={{
+                margin: "5px 0 0 -2px",
+                width: "calc(100% - 12px)"
+              }} />
+            </button>
+          </div>
+          <NavLink to='/' className='joinButton' onClick={joinRoom}>
             Join
           </NavLink>
         </span>
